@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0 1rem 1rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white; /* Adjust the path if needed */
+    background-size: cover;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-family: "Rubik Wet Paint", system-ui;
+    padding-bottom: 1rem;
+    color: rgb(208, 68, 233);
+  }
+  
+  #backgroundfloat {
+    width: 100%;
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.8s ease-in-out;
+    border-radius: 25px;
+    box-shadow: 1px 3px 4.8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .buttons {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+  }
+  
+  button {
+    padding: 10px 2rem;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  #back {
+    background-color: black;
+  }
+  
+  #next {
+    border: 1px solid #FF36FC;
+    background: linear-gradient(115deg, #FF3AF5 -10.45%, #B913DA 108.31%);
+  }
+  
