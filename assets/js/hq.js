@@ -182,3 +182,52 @@ galleryGrid.querySelectorAll('figure').forEach(f => galleryObserver.observe(f));
   window.addEventListener('touchmove', pointerMove, { passive: true });
   window.addEventListener('touchend', pointerUp);
 })();
+
+// ---------- Toncha fun-fact popup ----------
+(function factToast() {
+  const facts = [
+    { img: 'assets/images/toncha-snack-time.jpg', text: 'She always went for boiled or pan-seared chicken over fried. A dog of refined taste.' },
+    { img: 'assets/images/toncha-diego-diana-car1.jpg', text: 'Toncha was skeptical of Diego at first — she once spit out chicken he offered her, sure it was poisoned.' },
+    { img: 'assets/images/toncha-vela-christmas1.jpg', text: 'Toncha and her daughter Vela led with tough love and fought like family — because they were.' },
+    { img: 'assets/images/toncha-pink-sweater.jpg', text: 'She never missed a chance to sneak out at night with Vela and Carmen for a club run.' },
+    { img: 'assets/images/IMG_1610.jpg', text: 'She hated cats. Truly, deeply, unwaveringly, on principle.' },
+    { img: 'assets/images/toncha-yard-lookup.jpg', text: 'Twelve years at TJ Maxx, working her way from stocker all the way up to manager.' },
+    { img: 'assets/images/toncha-family-portrait.jpg', text: 'She graduated UNT Denton in 2021 with both a Bachelor\'s and a Master\'s degree.' },
+    { img: 'assets/images/toncha-diana-lap.jpg', text: 'She loved to borrow money from Diana and rarely paid it back. Diana never minded — she loved her too much.' },
+    { img: 'assets/images/lp_image_4.jpg', text: 'Never met a slot machine she didn\'t like. The casino was basically her second home.' },
+    { img: 'assets/images/toncha-belly-up.jpg', text: 'Grill days were sacred. Diana\'s parents always slipped her a piece, and she never once turned it down.' },
+    { img: 'assets/images/toncha-two-dogs-yard.jpg', text: 'Mr. G, Maribel\'s husband, once watched Toncha for a full week — and passed the test.' },
+    { img: 'assets/images/lp_image_5.jpg', text: 'She led the fight for fair dog wages, rallying dogs and people alike for equal treatment.' },
+  ];
+
+  const toast = document.getElementById('fact-toast');
+  const closeBtn = document.getElementById('fact-close');
+  const imgEl = document.getElementById('fact-img');
+  const textEl = document.getElementById('fact-text');
+
+  let order = [];
+  function nextFact() {
+    if (order.length === 0) {
+      order = facts.map((_, i) => i).sort(() => Math.random() - 0.5);
+    }
+    return facts[order.pop()];
+  }
+
+  let hideTimer = null;
+  function showFact() {
+    const fact = nextFact();
+    imgEl.src = fact.img;
+    textEl.textContent = fact.text;
+    toast.classList.add('show');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => toast.classList.remove('show'), 12000);
+  }
+
+  closeBtn.addEventListener('click', () => {
+    toast.classList.remove('show');
+    clearTimeout(hideTimer);
+  });
+
+  setTimeout(showFact, 20000);
+  setInterval(showFact, 5 * 60 * 1000);
+})();

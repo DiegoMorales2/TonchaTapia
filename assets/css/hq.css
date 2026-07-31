@@ -172,6 +172,36 @@ h2 {
   z-index: 1;
   max-width: 780px;
 }
+
+/* ---------- hero photos ---------- */
+.hero-photos {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-photo {
+  position: absolute;
+  width: 150px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: white;
+  padding: 10px 10px 26px;
+  border-radius: 6px;
+  box-shadow: 0 18px 40px rgba(26,20,32,0.22);
+  animation: photoBob 7s ease-in-out infinite;
+}
+.hero-photo.p1 { top: 14%; left: 4%; transform: rotate(-9deg); animation-delay: 0s; }
+.hero-photo.p2 { top: 58%; left: 8%; transform: rotate(7deg); width: 130px; animation-delay: 1.2s; }
+.hero-photo.p3 { top: 12%; right: 4%; transform: rotate(8deg); animation-delay: 0.6s; }
+.hero-photo.p4 { top: 58%; right: 7%; transform: rotate(-6deg); width: 130px; animation-delay: 1.8s; }
+@keyframes photoBob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -14px; }
+}
+@media (max-width: 1100px) {
+  .hero-photo { display: none; }
+}
 .eyebrow {
   font-weight: 800;
   letter-spacing: 0.25em;
@@ -365,6 +395,50 @@ h2 {
 .activism-card h3 { font-family: var(--serif); margin-bottom: 0.5rem; font-size: 1.15rem; }
 .activism-card p { color: #453a4b; line-height: 1.6; font-size: 0.95rem; }
 
+/* ---------- vitals ---------- */
+.vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+.vitals-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.6rem 1.2rem;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.vitals-card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(26,20,32,0.16); }
+.vitals-num {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  background: linear-gradient(115deg, var(--accent) -10%, var(--accent-2) 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.4rem;
+  word-break: break-word;
+}
+.vitals-card p {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b5c70;
+}
+.vitals-disclaimer {
+  margin-top: 1.5rem;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #8a7c8e;
+  text-align: center;
+}
+
 /* ---------- people ---------- */
 .people-grid {
   display: grid;
@@ -549,6 +623,70 @@ footer {
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ---------- fun fact toast ---------- */
+.fact-toast {
+  position: fixed;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: 340px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 0.9rem 2.2rem 0.9rem 0.9rem;
+  box-shadow: 0 20px 50px rgba(26,20,32,0.22);
+  transform: translateY(140%);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+  pointer-events: none;
+}
+.fact-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.fact-toast img {
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(26,20,32,0.18);
+}
+.fact-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 0.2rem;
+}
+.fact-body p#fact-text {
+  font-size: 0.87rem;
+  line-height: 1.4;
+  color: #3b3040;
+  font-weight: 500;
+}
+.fact-close {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.6rem;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #8a7c8e;
+  cursor: pointer;
+  padding: 0.2rem;
+}
+.fact-close:hover { color: var(--accent-2); }
+@media (max-width: 600px) {
+  .fact-toast { left: 0.75rem; right: 0.75rem; max-width: none; bottom: 0.75rem; }
+}
 
 /* ---------- responsive ---------- */
 @media (max-width: 820px) {

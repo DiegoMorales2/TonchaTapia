@@ -28,6 +28,7 @@
         <li><a href="#career">Career</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#activism">Activism</a></li>
+        <li><a href="#vitals">Stats</a></li>
         <li><a href="#circle">Her Circle</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#play">Play</a></li>
@@ -39,6 +40,12 @@
   <!-- HERO -->
   <header id="hero">
     <div class="hero-bg" style="background-image:url('assets/images/pattern-bg.webp')"></div>
+    <div class="hero-photos" aria-hidden="true">
+      <img class="hero-photo p1" src="assets/images/toncha-diana-kiss.jpg" alt="">
+      <img class="hero-photo p2" src="assets/images/toncha-pink-sweater.jpg" alt="">
+      <img class="hero-photo p3" src="assets/images/toncha-diego-diana-car2.jpg" alt="">
+      <img class="hero-photo p4" src="assets/images/toncha-birthday-candle.jpg" alt="">
+    </div>
     <div class="hero-content reveal">
       <p class="eyebrow">Official Executive Profile &middot; #1 Dog in the World</p>
       <h1 class="hero-name">Toncha Tapia</h1>
@@ -198,6 +205,50 @@
     </div>
   </section>
 
+  <!-- BY THE NUMBERS -->
+  <section id="vitals" class="section">
+    <div class="section-inner reveal">
+      <p class="kicker">Vitals</p>
+      <h2>By the Numbers</h2>
+      <p class="lede">The kind of stats that don't show up on a normal résumé.</p>
+      <div class="vitals-grid">
+        <div class="vitals-card reveal">
+          <span class="vitals-num">24</span>
+          <p>Rats Neutralized</p>
+        </div>
+        <div class="vitals-card reveal">
+          <span class="vitals-num">7&frac12;</span>
+          <p>Cats Taken Down</p>
+        </div>
+        <div class="vitals-card reveal">
+          <span class="vitals-num">399+</span>
+          <p>Chickens Consumed</p>
+        </div>
+        <div class="vitals-card reveal">
+          <span class="vitals-num">8</span>
+          <p>Cars Owned</p>
+        </div>
+        <div class="vitals-card reveal">
+          <span class="vitals-num">$4,534,532</span>
+          <p>Total Money Made</p>
+        </div>
+        <div class="vitals-card reveal">
+          <span class="vitals-num">$321,223,212</span>
+          <p>Total Debt &amp; Taxes Owed</p>
+        </div>
+        <div class="vitals-card reveal">
+          <span class="vitals-num">87</span>
+          <p>Casino Trips</p>
+        </div>
+        <div class="vitals-card reveal">
+          <span class="vitals-num">14,600+</span>
+          <p>Naps Taken</p>
+        </div>
+      </div>
+      <p class="vitals-disclaimer">Figures self-reported. Auditors have declined to comment.</p>
+    </div>
+  </section>
+
   <!-- HER CIRCLE -->
   <section id="circle" class="section">
     <div class="section-inner reveal">
@@ -323,6 +374,15 @@
   <footer>
     <p>Toncha Tapia HQ &middot; Built with love, chicken grease, and a little bit of casino luck.</p>
   </footer>
+
+  <div id="fact-toast" class="fact-toast" aria-live="polite">
+    <button id="fact-close" class="fact-close" aria-label="Dismiss">&times;</button>
+    <img id="fact-img" src="" alt="">
+    <div class="fact-body">
+      <p class="fact-label">Toncha Fact</p>
+      <p id="fact-text"></p>
+    </div>
+  </div>
 
   <script src="assets/js/hq.js"></script>
   <script src="assets/js/toncha-game.js"></script>
