@@ -509,23 +509,52 @@ h2 {
 /* ---------- people ---------- */
 .people-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: start;
+  gap: 1.6rem;
   margin-top: 1.5rem;
 }
 .person-card {
   position: relative;
   background: white;
-  border-radius: 18px;
-  padding: 1.6rem;
+  border-radius: 20px;
+  padding: 1.8rem;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.person-card:hover { transform: translateY(-4px) rotate(-0.4deg); }
-.person-card h3 { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 0.15rem; }
-.person-role { font-weight: 700; color: var(--accent-2); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.6rem; }
-.person-card p:last-child { font-size: 0.92rem; color: #453a4b; line-height: 1.6; }
+.person-card:hover { transform: translateY(-4px) rotate(-0.4deg); box-shadow: 0 24px 50px rgba(26,20,32,0.16); }
+.person-card.featured { grid-column: span 2; }
+@media (max-width: 720px) {
+  .person-card.featured { grid-column: span 1; }
+}
+.person-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+.person-avatar {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: white;
+  background: linear-gradient(135deg, var(--accent) -10%, var(--accent-2) 110%);
+}
+.person-card:nth-of-type(4n+2) .person-avatar { background: linear-gradient(135deg, var(--accent-3) -10%, var(--accent) 110%); }
+.person-card:nth-of-type(4n+3) .person-avatar { background: linear-gradient(135deg, var(--accent-2) -10%, var(--ink) 110%); }
+.person-card:nth-of-type(4n+4) .person-avatar { background: linear-gradient(135deg, var(--ink) -10%, var(--accent-2) 110%); }
+.person-card h3 { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 0.2rem; line-height: 1.2; }
+.person-role { font-weight: 700; color: var(--accent-2); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.person-card p:last-child { font-size: 0.95rem; color: #453a4b; line-height: 1.7; }
+.person-card.featured p:last-child { font-size: 1rem; max-width: 62ch; }
 .person-badge {
   position: absolute;
   top: -12px; right: -12px;
@@ -540,6 +569,7 @@ h2 {
 }
 .person-card.dislike { background: #fff3f3; border-color: #ffd7d7; }
 .person-card.dislike .person-role { color: #d64545; }
+.person-card.dislike .person-avatar { background: linear-gradient(135deg, #ff8a8a -10%, #d64545 110%); }
 
 .fun-facts {
   margin-top: 2.5rem;
