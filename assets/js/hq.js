@@ -262,31 +262,69 @@ galleryGrid.querySelectorAll('figure').forEach(f => galleryObserver.observe(f));
   window.addEventListener('resize', onScroll);
 })();
 
-// ---------- visit counter ----------
-(function visitCounter() {
-  const el = document.getElementById('visit-count');
-  if (!el) return;
+// ---------- visit counter + casino fund ----------
+(function visitCounterAndCasinoFund() {
+  const countEl = document.getElementById('visit-count');
+  const moneyEl = document.querySelector('.t-money .vitals-num');
+  const BASE_MONEY = 4534532;
 
-  function animateTo(target) {
+  function animateNumber(el, target, format) {
     let current = 0;
     const step = Math.max(1, Math.ceil(target / 60));
     const tick = () => {
       current += step;
-      if (current >= target) {
-        el.textContent = target.toLocaleString();
-      } else {
-        el.textContent = current.toLocaleString();
-        requestAnimationFrame(tick);
-      }
+      const val = current >= target ? target : current;
+      el.textContent = format ? format(val) : val.toLocaleString();
+      if (current < target) requestAnimationFrame(tick);
     };
     tick();
   }
 
-  fetch('https://api.countapi.xyz/hit/tonchatapia-hq/visits')
+  function showMoneyToast(newTotal) {
+    const toast = document.createElement('div');
+    toast.className = 'money-toast';
+    toast.innerHTML = `
+      <button class="money-toast-close" aria-label="Dismiss">&times;</button>
+      <span class="money-toast-icon">💵</span>
+      <div>
+        <p class="money-toast-title">Ka-ching!</p>
+        <p>You just made Toncha $1,000. Thanks for contributing to the Toncha Tapia Casino Fund.</p>
+      </div>
+    `;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('show'));
+    const remove = () => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 500);
+    };
+    toast.querySelector('.money-toast-close').addEventListener('click', remove);
+    setTimeout(remove, 9000);
+  }
+
+  fetch('https://abacus.jasoncameron.dev/hit/tonchatapia-hq/visits')
     .then(res => res.json())
-    .then(data => animateTo(data.value))
+    .then(data => {
+      const visits = data.value;
+      if (countEl) animateNumber(countEl, visits);
+
+      if (moneyEl) {
+        const newTotal = BASE_MONEY + visits * 1000;
+        setTimeout(() => {
+          let current = BASE_MONEY;
+          const step = Math.max(1, Math.ceil((newTotal - BASE_MONEY) / 40));
+          const tick = () => {
+            current += step;
+            const val = current >= newTotal ? newTotal : current;
+            moneyEl.textContent = '$' + val.toLocaleString();
+            if (current < newTotal) requestAnimationFrame(tick);
+          };
+          tick();
+          showMoneyToast(newTotal);
+        }, 2000);
+      }
+    })
     .catch(() => {
-      const widget = el.closest('.visit-counter');
+      const widget = countEl ? countEl.closest('.visit-counter') : null;
       if (widget) widget.style.display = 'none';
     });
 })();
