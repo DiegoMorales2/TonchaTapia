@@ -261,3 +261,32 @@ galleryGrid.querySelectorAll('figure').forEach(f => galleryObserver.observe(f));
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
 })();
+
+// ---------- visit counter ----------
+(function visitCounter() {
+  const el = document.getElementById('visit-count');
+  if (!el) return;
+
+  function animateTo(target) {
+    let current = 0;
+    const step = Math.max(1, Math.ceil(target / 60));
+    const tick = () => {
+      current += step;
+      if (current >= target) {
+        el.textContent = target.toLocaleString();
+      } else {
+        el.textContent = current.toLocaleString();
+        requestAnimationFrame(tick);
+      }
+    };
+    tick();
+  }
+
+  fetch('https://api.countapi.xyz/hit/tonchatapia-hq/visits')
+    .then(res => res.json())
+    .then(data => animateTo(data.value))
+    .catch(() => {
+      const widget = el.closest('.visit-counter');
+      if (widget) widget.style.display = 'none';
+    });
+})();
