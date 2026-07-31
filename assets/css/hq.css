@@ -200,6 +200,7 @@ h2 {
   50% { translate: 0 -14px; }
 }
 @media (max-width: 1100px) {
+  .hero-photos { display: none; }
   .hero-photo { display: none; }
 }
 .eyebrow {
