@@ -629,6 +629,10 @@ h2 {
 .person-card.dislike .person-role { color: #d64545; }
 .person-card.dislike .person-avatar { background: linear-gradient(135deg, #ff8a8a -10%, #d64545 110%); }
 
+.mentee-header { margin-top: 3rem; margin-bottom: -0.5rem; }
+.mentee-header .kicker { margin-bottom: 0.5rem; }
+.mentee-header .lede { margin-bottom: 0; }
+
 .fun-facts {
   margin-top: 2.5rem;
   background: white;
