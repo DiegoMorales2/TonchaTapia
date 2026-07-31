@@ -1,11 +1,12 @@
 // ---------- floating paw background ----------
 (function pawField() {
   const field = document.getElementById('paw-field');
+  const symbols = ['🐾', '🌸', '💐', '🌷', '✨'];
   const count = window.innerWidth < 700 ? 10 : 20;
   for (let i = 0; i < count; i++) {
     const paw = document.createElement('span');
     paw.className = 'paw';
-    paw.textContent = '🐾';
+    paw.textContent = symbols[i % symbols.length];
     paw.style.left = Math.random() * 100 + 'vw';
     paw.style.fontSize = (1 + Math.random() * 1.6) + 'rem';
     const duration = 14 + Math.random() * 16;
@@ -95,6 +96,26 @@ document.querySelectorAll('.stat-num[data-target]').forEach(el => statObserver.o
 
 // ---------- gallery grid (auto-populated from repo images) ----------
 const galleryImages = [
+  'assets/images/toncha-diego-diana-car2.jpg',
+  'assets/images/toncha-diana-backyard.jpg',
+  'assets/images/toncha-vela-christmas1.jpg',
+  'assets/images/toncha-pink-sweater.jpg',
+  'assets/images/toncha-birthday-candle.jpg',
+  'assets/images/toncha-family-portrait.jpg',
+  'assets/images/toncha-diana-kiss.jpg',
+  'assets/images/toncha-diana-lap.jpg',
+  'assets/images/toncha-christmas-lap.jpg',
+  'assets/images/toncha-vela-christmas2.jpg',
+  'assets/images/toncha-two-dogs-yard.jpg',
+  'assets/images/toncha-snack-time.jpg',
+  'assets/images/toncha-yard-lookup.jpg',
+  'assets/images/toncha-belly-up.jpg',
+  'assets/images/toncha-belly-closeup.jpg',
+  'assets/images/toncha-nose-closeup.jpg',
+  'assets/images/toncha-tapia-face.jpg',
+  'assets/images/toncha-tapia-carpet.jpg',
+  'assets/images/toncha-diego-diana-car1.jpg',
+  'assets/images/toncha-diego-diana-car3.jpg',
   'assets/images/IMG_1610.jpg',
   'assets/images/IMG_1611.jpg',
   'assets/images/IMG_1614.jpg',
