@@ -68,7 +68,7 @@ const revealObserver = new IntersectionObserver((entries) => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.15 });
+}, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // ---------- animated stat counters ----------
@@ -230,4 +230,34 @@ galleryGrid.querySelectorAll('figure').forEach(f => galleryObserver.observe(f));
 
   setTimeout(showFact, 20000);
   setInterval(showFact, 5 * 60 * 1000);
+})();
+
+// ---------- vitals bento parallax ----------
+(function vitalsParallax() {
+  const tiles = document.querySelectorAll('.parallax-tile');
+  if (!tiles.length) return;
+  let ticking = false;
+
+  function update() {
+    const vh = window.innerHeight;
+    tiles.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const progress = (center - vh / 2) / (vh / 2 + rect.height / 2);
+      const clamped = Math.max(-1, Math.min(1, progress));
+      el.style.backgroundPosition = `center ${50 + clamped * 18}%`;
+    });
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
 })();
